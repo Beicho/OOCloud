@@ -1,0 +1,15 @@
+OOCloud
+Copyright 2025 OOCloud Contributors
+
+This product includes software developed by the upstream project:
+- 彩虹外链网盘 (cccyun) — https://pan.cccyun.cc/ and https://blog.cccyun.cn/
+
+Third‑party components and SDKs are included under their respective licenses,
+notably (non‑exhaustive):
+- Alibaba Cloud OSS SDK (includes/OSS)
+- Tencent Cloud COS SDK (includes/Qcloud)
+- Qiniu SDK (includes/Qiniu)
+- Huawei Cloud OBS SDK (includes/Obs)
+- Upyun SDK (includes/Upyun)
+
+All trademarks are the property of their respective owners.
