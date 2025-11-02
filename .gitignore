@@ -17,6 +17,7 @@ tmp/
 # IDE 配置
 .idea/
 .vscode/
+.claude/
 *.swp
 *.swo
 *~

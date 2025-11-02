@@ -29,7 +29,10 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./">OOCloud 管理中心</a>
+        <a class="navbar-brand" href="./">
+          <img src="../assets/img/oocloud-logo.svg" alt="OOCloud" class="brand-logo"/>
+          OOCloud 管理中心
+        </a>
       </div><!-- /.navbar-header -->
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav navbar-right">

@@ -190,6 +190,16 @@ img:hover, .image:hover, .image_view:hover {
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
+/* OOCloud brand logo */
+.navbar-brand .brand-logo {
+  height: 22px;
+  width: auto;
+  margin-top: -4px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /* 复选框动效 */
 input[type="checkbox"] {
   cursor: pointer;
