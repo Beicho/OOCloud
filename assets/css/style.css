@@ -192,12 +192,32 @@ img:hover, .image:hover, .image_view:hover {
 
 /* OOCloud brand logo */
 .navbar-brand .brand-logo {
-  height: 22px;
+  height: 20px;         /* 基准尺寸，避免占满导航高度 */
+  max-height: 20px;
   width: auto;
-  margin-top: -4px;
+  margin-top: -2px;
   margin-right: 8px;
   display: inline-block;
   vertical-align: middle;
+  transition: none;     /* 不对导航Logo做悬停动效 */
+}
+/* 响应式缩放，移动端更小 */
+@media (max-width: 991px) {
+  .navbar-brand .brand-logo { height: 18px; max-height: 18px; margin-top: -2px; }
+}
+@media (max-width: 767px) {
+  .navbar-brand .brand-logo { height: 16px; max-height: 16px; margin-top: -2px; }
+}
+
+/* 取消导航内图片的放大悬停，避免抖动 */
+.navbar img, .navbar .brand-logo { transform: none !important; box-shadow: none !important; }
+
+/* 导航内图标不做旋转/放大，以免布局跳动 */
+.navbar a:hover .fa, .navbar button:hover .fa { transform: none !important; }
+
+/* 小屏将面板大图标缩小，避免撑破布局 */
+@media (max-width: 767px) {
+  .panel .fa-5x { font-size: 3em; }
 }
 
 /* 复选框动效 */
