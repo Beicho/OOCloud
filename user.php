@@ -137,9 +137,11 @@ curl -H "Authorization: Bearer 你的token" \
 /* API Token 代码块悬停效果 */
 #api_token {
   transition: all 0.2s ease;
+  color: #333333 !important;
 }
 #api_token:hover {
-  background: #f0f0f0;
+  background: #333333 !important;
+  color: #ffffff !important;
   padding: 4px 8px;
   border-radius: 3px;
 }
@@ -239,15 +241,18 @@ curl -H "Authorization: Bearer 你的token" \
 /* 统计数字跳动效果 */
 .panel-body p {
   transition: all 0.2s ease;
+  color: #333333;
 }
 .panel-body p:hover {
-  color: #2196F3;
+  color: #000000 !important;
+  font-weight: 600;
   transform: translateX(5px);
 }
 
 /* 复选框标签悬停效果 */
 label[style*="cursor:pointer"]:hover {
-  color: #2196F3;
+  color: #000000 !important;
+  font-weight: 600;
   text-decoration: underline;
 }
 
