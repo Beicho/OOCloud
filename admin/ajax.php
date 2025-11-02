@@ -87,6 +87,52 @@ case 'saveUserInfo':
 	if($DB->exec($sql)!==false)exit('{"code":0,"msg":"修改用户成功！"}');
 	else exit('{"code":-1,"msg":"修改用户失败['.$DB->error().']"}');
 break;
+case 'checkupdate':
+    // 后台检查更新：改为从 OOCloud 源查询（GitHub Releases / Tags）
+    $current = defined('VERSION') ? (string)VERSION : '0';
+    $latest = null; $latest_url = 'https://github.com/Beicho/OOCloud/releases'; $note = '';
+    // 优先获取最新 Release
+    $resp = get_curl('https://api.github.com/repos/Beicho/OOCloud/releases/latest');
+    $json = json_decode($resp, true);
+    if (is_array($json) && isset($json['tag_name'])) {
+        $latest = (string)$json['tag_name'];
+        $latest_url = $json['html_url'] ?: $latest_url;
+        $note = isset($json['name']) ? (string)$json['name'] : '';
+    } else {
+        // 无 Release，则回落到 tags 列表
+        $resp2 = get_curl('https://api.github.com/repos/Beicho/OOCloud/tags');
+        $tags = json_decode($resp2, true);
+        if (is_array($tags) && isset($tags[0]['name'])) {
+            $latest = (string)$tags[0]['name'];
+            $latest_url = 'https://github.com/Beicho/OOCloud/tags';
+        }
+    }
+    // 版本归一化比较
+    $norm = function($v){ return preg_replace('/[^0-9.]/', '', (string)$v); };
+    $curN = $norm($current) ?: '0';
+    $latN = $norm($latest) ?: '';
+    $status = '无法获取最新版本信息';
+    if ($latest) {
+        if ($latN && version_compare($curN, $latN, '<')) {
+            $status = '发现新版本，建议更新';
+        } else {
+            $status = '当前为最新版本';
+        }
+    }
+    // 组装 HTML 列表项
+    $html = '';
+    $html .= '<li class="list-group-item"><b>当前版本：</b>'.htmlspecialchars($current, ENT_QUOTES, 'UTF-8').'</li>';
+    if ($latest) {
+        $html .= '<li class="list-group-item"><b>最新版本：</b>'.htmlspecialchars($latest, ENT_QUOTES, 'UTF-8');
+        if ($note) $html .= ' <span class="text-muted">('.htmlspecialchars($note, ENT_QUOTES, 'UTF-8').')</span>';
+        $html .= ' <a href="'.htmlspecialchars($latest_url, ENT_QUOTES, 'UTF-8').'" target="_blank" rel="noopener">查看</a></li>';
+    } else {
+        $html .= '<li class="list-group-item">无法连接更新源，请稍后重试</li>';
+    }
+    $html .= '<li class="list-group-item"><b>状态：</b>'.$status.'</li>';
+    $html .= '<li class="list-group-item">开源地址：<a href="https://github.com/Beicho/OOCloud" target="_blank" rel="noopener">GitHub/Beicho/OOCloud</a></li>';
+    exit(json_encode(['code'=>0,'msg'=>$html]));
+break;
 case 'resetLocalPassword':
 	$uid=intval($_POST['uid']);
 	$pwd=trim($_POST['password']);

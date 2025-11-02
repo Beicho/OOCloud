@@ -7,7 +7,6 @@ if($islogin==1){}else exit("<script language='javascript'>window.location.href='
 ?>
 <?php
 $mysqlversion=$DB->getColumn("select VERSION()");
-$checkupdate = '//auth.cccyun.cc/app/pan.php?ver='.VERSION;
 ?>
 <link href="../assets/css/admin.css" rel="stylesheet"/>
 <div class="container" style="padding-top:70px;">
@@ -157,14 +156,21 @@ $(document).ready(function(){
             $('#count2').html(data.count2);
             $('#count3').html(data.count3);
             $('#count4').html(data.count4);
+            // 改为调用本地接口检查更新，避免跨域与上游依赖
             $.ajax({
-                url: '<?php echo $checkupdate?>',
+                url: 'ajax.php',
                 type: 'get',
-                dataType: 'jsonp',
-                jsonpCallback: 'callback'
-            }).done(function(data){
-                $("#checkupdate").html(data.msg);
-            })
+                data: { act: 'checkupdate' },
+                dataType: 'json'
+            }).done(function(res){
+                if(res && res.msg){
+                    $("#checkupdate").html(res.msg);
+                } else {
+                    $("#checkupdate").html('<li class="list-group-item">更新检查失败</li>');
+                }
+            }).fail(function(){
+                $("#checkupdate").html('<li class="list-group-item">更新检查失败</li>');
+            });
         }
     })
 })
