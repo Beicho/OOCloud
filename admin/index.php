@@ -163,11 +163,43 @@ $(document).ready(function(){
                 data: { act: 'checkupdate' },
                 dataType: 'json'
             }).done(function(res){
+                var html = '';
                 if(res && res.msg){
-                    $("#checkupdate").html(res.msg);
+                    html = res.msg;
                 } else {
-                    $("#checkupdate").html('<li class="list-group-item">更新检查失败</li>');
+                    html = '<li class="list-group-item">更新检查失败</li>';
                 }
+                // 追加一键更新按钮
+                html += '<li class="list-group-item">'
+                    + '<button id="btn-self-update" class="btn btn-sm btn-primary">一键更新</button> '
+                    + '<span id="upd-status" class="text-muted" style="margin-left:8px;"></span>'
+                    + '</li>';
+                $("#checkupdate").html(html);
+                // 绑定事件
+                $('#btn-self-update').on('click', function(){
+                    var $btn = $(this), $st = $('#upd-status');
+                    if($btn.prop('disabled')) return false;
+                    $btn.prop('disabled', true).text('更新中...');
+                    $st.text('准备下载更新包...');
+                    $.ajax({
+                        url: 'ajax.php',
+                        type: 'post',
+                        data: { act: 'selfUpdate' },
+                        dataType: 'json',
+                        timeout: 0
+                    }).done(function(r){
+                        if(r && r.code===0){
+                            $st.text('更新完成：'+(r.new_version||''));
+                            $btn.text('已更新');
+                        } else {
+                            $st.text('更新失败：'+(r && r.msg ? r.msg : '未知错误'));
+                            $btn.prop('disabled', false).text('重试更新');
+                        }
+                    }).fail(function(){
+                        $st.text('更新失败：网络错误');
+                        $btn.prop('disabled', false).text('重试更新');
+                    });
+                });
             }).fail(function(){
                 $("#checkupdate").html('<li class="list-group-item">更新检查失败</li>');
             });
