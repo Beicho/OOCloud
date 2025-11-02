@@ -58,5 +58,4 @@ if($errorMsg){
 //echo '<div class="alert alert-danger text-center" role="alert">'.$errorMsg.'</div>';
 }
 exit("<script language='javascript'>alert('网站数据库升级完成！');window.location.href='../';</script>");
-
 ?>
