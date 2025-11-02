@@ -34,7 +34,7 @@ if($rs = $db->query("SELECT v FROM pre_config WHERE k='version'")){
 if($version<1001){
 	$sqls = file_get_contents('update.sql');
 	$sqls=explode(';', $sqls);
-	$sqls[]="REPLACE INTO `pre_config` VALUES ('version', '1001')";
+	$sqls[]="REPLACE INTO `pre_config` VALUES ('version', '1002')";
 	if(!$db->query("SELECT v FROM pre_config WHERE k='syskey'")->fetchColumn()){
 		$sqls[]="REPLACE INTO `pre_config` VALUES ('syskey', '".random(32)."')";
 	}
@@ -58,4 +58,5 @@ if($errorMsg){
 //echo '<div class="alert alert-danger text-center" role="alert">'.$errorMsg.'</div>';
 }
 exit("<script language='javascript'>alert('网站数据库升级完成！');window.location.href='../';</script>");
+
 ?>
