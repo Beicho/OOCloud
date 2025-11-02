@@ -18,9 +18,9 @@ tmp/
 .idea/
 .vscode/
 .claude/
- # 临时凭据与辅助脚本（不提交）
- .secrets/
- .git-askpass.sh
+# 临时凭据与辅助脚本（不提交）
+.secrets/
+.git-askpass.sh
 *.swp
 *.swo
 *~

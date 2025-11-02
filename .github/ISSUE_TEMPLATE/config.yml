@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全问题（私密报告）
+    url: https://github.com/Beicho/OOCloud/security/advisories
+    about: 请通过 Security Advisories 私密报告安全漏洞，不要公开提交 Issue。

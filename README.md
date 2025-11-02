@@ -93,7 +93,11 @@ OOCloud 是一个基于 PHP 的轻量网盘 / 外链分享服务，支持常见�
 - `file/` 本地存储目录（受 .htaccess 保护）
 
 ## 贡献
-欢迎提交 Issue 与 PR！建议在 PR 中附带：变更说明、测试方法、可能影响范围。
+欢迎提交 Issue 与 PR！
+
+- 请先阅读：[CONTRIBUTING.md](./CONTRIBUTING.md)
+- 安全问题请私密报告：[SECURITY.md](./SECURITY.md)
+- PR 请遵循提交信息规范、兼容性要求与自检清单（仓库自带 PR 模板）
 
 ## 许可与致谢
 - 许可证：Apache-2.0，详见 `LICENSE`
