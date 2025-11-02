@@ -19,8 +19,13 @@
   <link href="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://s4.zstatic.net/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css" rel="stylesheet">
   <link href="https://s4.zstatic.net/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css" rel="stylesheet">
+  <?php 
+    // 品牌图标与站点图标（支持自定义）
+    $brand_logo_url = !empty($conf['brand_logo_url']) ? $conf['brand_logo_url'] : '/assets/img/oocloud-logo.svg';
+    $brand_favicon_url = !empty($conf['brand_favicon_url']) ? $conf['brand_favicon_url'] : '/assets/img/oocloud-favicon.svg';
+  ?>
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/img/oocloud-favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="<?php echo htmlspecialchars($brand_favicon_url, ENT_QUOTES, 'UTF-8'); ?>">
   <?php if($is_file){?><link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/aplayer/1.10.1/APlayer.min.css"><link href="assets/css/ckplayer.css" rel="stylesheet"><?php }?>
   <link href="assets/css/style.css?v=<?php echo VERSION?>" rel="stylesheet">
   <!--[if lt IE 9]>
@@ -40,7 +45,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="./">
-            <img src="assets/img/oocloud-logo.svg" alt="OOCloud" class="brand-logo"/>
+            <img src="<?php echo htmlspecialchars($brand_logo_url, ENT_QUOTES, 'UTF-8'); ?>" alt="OOCloud" class="brand-logo"/>
             <?php echo $conf['title']?>
           </a>
         </div>

@@ -11,8 +11,13 @@
   <link href="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://s4.zstatic.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
   <link href="../assets/css/bootstrap-table.css?v=1" rel="stylesheet"/>
+  <?php 
+    // 站点根相对路径的资源：后台也使用站点级路径以避免相对目录问题
+    $brand_logo_url = !empty($conf['brand_logo_admin_url']) ? $conf['brand_logo_admin_url'] : (!empty($conf['brand_logo_url']) ? $conf['brand_logo_url'] : '/assets/img/oocloud-logo.svg');
+    $brand_favicon_url = !empty($conf['brand_favicon_url']) ? $conf['brand_favicon_url'] : '/assets/img/oocloud-favicon.svg';
+  ?>
   <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="../assets/img/oocloud-favicon.svg"/>
+  <link rel="icon" type="image/svg+xml" href="<?php echo htmlspecialchars($brand_favicon_url, ENT_QUOTES, 'UTF-8'); ?>"/>
   <script src="https://s4.zstatic.net/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!--[if lt IE 9]>
@@ -32,7 +37,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="./">
-          <img src="../assets/img/oocloud-logo.svg" alt="OOCloud" class="brand-logo"/>
+          <img src="<?php echo htmlspecialchars($brand_logo_url, ENT_QUOTES, 'UTF-8'); ?>" alt="OOCloud" class="brand-logo"/>
           OOCloud 管理中心
         </a>
       </div><!-- /.navbar-header -->

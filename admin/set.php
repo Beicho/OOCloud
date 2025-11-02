@@ -33,6 +33,27 @@ if($mod=='site'){
 	  <div class="col-sm-10"><input type="text" name="description" value="<?php echo $conf['description']; ?>" class="form-control"/></div>
 	</div><br/>
 	<div class="form-group">
+	  <label class="col-sm-2 control-label">前台 Logo</label>
+	  <div class="col-sm-10">
+	    <input type="text" name="brand_logo_url" value="<?php echo htmlspecialchars($conf['brand_logo_url']); ?>" class="form-control" placeholder="例如：/assets/img/oocloud-logo.svg 或 https://..."/>
+	    <span class="help-block">支持以 / 开头的站点内路径或 http(s) 绝对地址；留空则使用默认 OOCloud Logo。</span>
+	  </div>
+	</div><br/>
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">后台 Logo</label>
+	  <div class="col-sm-10">
+	    <input type="text" name="brand_logo_admin_url" value="<?php echo htmlspecialchars($conf['brand_logo_admin_url']); ?>" class="form-control" placeholder="不填则沿用前台 Logo"/>
+	    <span class="help-block">可单独指定后台导航左上角 Logo；不填时沿用“前台 Logo”。</span>
+	  </div>
+	</div><br/>
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Favicon</label>
+	  <div class="col-sm-10">
+	    <input type="text" name="brand_favicon_url" value="<?php echo htmlspecialchars($conf['brand_favicon_url']); ?>" class="form-control" placeholder="例如：/assets/img/oocloud-favicon.svg 或 /favicon.ico"/>
+	    <span class="help-block">推荐 SVG；如需兼容老浏览器可填写 /favicon.ico。</span>
+	  </div>
+	</div><br/>
+	<div class="form-group">
 	  <label class="col-sm-2 control-label">禁止访问IP</label>
 	  <div class="col-sm-10"><textarea class="form-control" name="blackip" rows="2" placeholder="多个IP用|隔开"><?php echo $conf['blackip']?></textarea></div>
 	</div><br/>

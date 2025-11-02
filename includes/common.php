@@ -118,6 +118,10 @@ if(!$DB->getRow("SHOW COLUMNS FROM pre_user LIKE 'bindings'")){
 function ensureConf($k, $v){ global $conf; if(!isset($conf[$k])){ saveSetting($k, (string)$v); $conf[$k]=(string)$v; } }
 ensureConf('disable_web_upload', 0);
 // 隐私设置
+// 品牌与外观（提供默认可覆盖项）
+ensureConf('brand_logo_url', '/assets/img/oocloud-logo.svg');
+ensureConf('brand_logo_admin_url', ''); // 留空则回落到 brand_logo_url
+ensureConf('brand_favicon_url', '/assets/img/oocloud-favicon.svg');
 ensureConf('hide_user_ip', '0');  // 是否在前端隐藏用户IP
 // Linux Do OAuth2 配置
 ensureConf('login_linuxdo', '0');
